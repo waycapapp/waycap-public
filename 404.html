@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>WayCap</title>
+  <meta name="robots" content="noindex" />
+  <meta name="theme-color" content="#FF5A5F" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23FF5A5F'/%3E%3Ccircle cx='32' cy='32' r='14' fill='%23fff'/%3E%3Ccircle cx='32' cy='32' r='7' fill='%23FF5A5F'/%3E%3C/svg%3E" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { primary: '#FF5A5F', 'primary-soft': '#FF8B8E', 'primary-dark': '#E63E48', ink: '#0B0B12' },
+          fontFamily: {
+            sans: ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+            mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { min-height: 100dvh; }
+    .fade-in { animation: fade-in 240ms ease-out both; }
+    @keyframes fade-in { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+  </style>
+</head>
+<body class="bg-white text-ink font-sans antialiased grid place-items-center px-6">
+
+  <main id="root" class="w-full max-w-md py-16 text-center">
+
+    <!-- Slot 1: Generic 404 (no invite code matched) -->
+    <section id="view-generic" class="hidden">
+      <p class="text-7xl mb-4">🧭</p>
+      <h1 class="text-3xl font-bold tracking-tight">Page not found</h1>
+      <p class="mt-3 text-slate-600">The link you followed doesn't go anywhere on WayCap.</p>
+      <a href="/" class="inline-block mt-8 bg-primary hover:bg-primary-dark text-white font-semibold rounded-xl px-5 py-3 transition-colors">
+        Back to WayCap
+      </a>
+    </section>
+
+    <!-- Slot 2: Opening WayCap (mobile, code matched, redirect in flight) -->
+    <section id="view-opening" class="hidden">
+      <div class="mx-auto w-14 h-14 rounded-full border-4 border-primary/20 border-t-primary animate-spin mb-6" aria-hidden="true"></div>
+      <h1 class="text-3xl font-bold tracking-tight">Opening WayCap…</h1>
+      <p class="mt-3 text-slate-600">Joining <span id="opening-code" class="font-mono"></span></p>
+      <p class="mt-2 text-sm text-slate-500">If nothing happens, tap the button below.</p>
+      <a id="opening-fallback-btn" href="#" class="inline-block mt-6 bg-primary hover:bg-primary-dark text-white font-semibold rounded-xl px-5 py-3 transition-colors">
+        Open WayCap
+      </a>
+    </section>
+
+    <!-- Slot 3: Manual fallback (desktop, or mobile redirect didn't take) -->
+    <section id="view-fallback" class="hidden">
+      <p class="text-7xl mb-4">📲</p>
+      <h1 class="text-3xl font-bold tracking-tight">Open in WayCap</h1>
+      <p class="mt-3 text-slate-600">You're invited to join</p>
+
+      <div class="mt-6 mx-auto max-w-xs">
+        <div class="font-mono text-3xl tracking-[0.25em] font-bold text-ink bg-slate-50 border border-slate-200 rounded-xl py-4 px-3" id="fallback-code">
+          ————
+        </div>
+        <button id="copy-btn" type="button" class="mt-2 text-xs text-slate-500 hover:text-primary transition-colors">
+          Copy code
+        </button>
+      </div>
+
+      <a id="fallback-open-btn" href="#" class="inline-block mt-8 bg-primary hover:bg-primary-dark text-white font-semibold rounded-xl px-5 py-3 transition-colors">
+        Open WayCap
+      </a>
+
+      <p class="mt-8 text-sm text-slate-500">
+        Or open this link on your phone at<br />
+        <span class="font-mono text-slate-700 break-all" id="fallback-url"></span>
+      </p>
+    </section>
+
+  </main>
+
+  <script>
+    (function () {
+      var IS_MOBILE = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+      // Accept /join/CODE and /waycap-public/join/CODE (the latter for the github.io fallback before CNAME is live).
+      var m = window.location.pathname.match(
+        /^\/(?:waycap-public\/)?join\/([A-Za-z0-9_-]{4,32})\/?$/
+      );
+      var code = m ? m[1].toUpperCase() : null;
+
+      function show(id) {
+        var nodes = ['view-generic', 'view-opening', 'view-fallback'];
+        for (var i = 0; i < nodes.length; i++) {
+          var n = document.getElementById(nodes[i]);
+          if (!n) continue;
+          if (nodes[i] === id) {
+            n.classList.remove('hidden');
+            n.classList.add('fade-in');
+          } else {
+            n.classList.add('hidden');
+          }
+        }
+      }
+
+      function deepLinkUrl(c) { return 'waycap://join/' + c; }
+
+      function openInApp(c) {
+        var url = deepLinkUrl(c);
+        // Programmatic location change (works on iOS Safari + most browsers).
+        window.location.href = url;
+        // Hidden anchor + click for gesture-safe Android Chrome fallback.
+        var a = document.createElement('a');
+        a.href = url;
+        a.style.display = 'none';
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(function () { document.body.removeChild(a); }, 100);
+      }
+
+      // ---- Branch: generic 404 ----
+      if (!code) {
+        show('view-generic');
+        document.title = 'Page not found — WayCap';
+        return;
+      }
+
+      // Update title for any join page (helps users who land here and check the tab name).
+      document.title = 'Join ' + code + ' — WayCap';
+
+      // ---- Branch: mobile + code matched → auto-open ----
+      if (IS_MOBILE) {
+        document.getElementById('opening-code').textContent = code;
+        var fallbackBtn = document.getElementById('opening-fallback-btn');
+        fallbackBtn.href = deepLinkUrl(code);
+
+        show('view-opening');
+        openInApp(code);
+
+        // Visibility change: app took over — leave the spinner, nothing to do.
+        document.addEventListener('visibilitychange', function () {
+          if (document.hidden) return; // app is in the foreground, leave view as-is
+        });
+
+        // If still visible after 1200 ms, the OS didn't launch the app — swap to manual fallback.
+        setTimeout(function () {
+          if (!document.hidden) renderFallback(code);
+        }, 1200);
+
+      } else {
+        // ---- Branch: desktop → no auto-redirect, show fallback immediately ----
+        renderFallback(code);
+      }
+
+      function renderFallback(c) {
+        document.getElementById('fallback-code').textContent = c;
+        document.getElementById('fallback-url').textContent =
+          window.location.host + '/join/' + c;
+        document.getElementById('fallback-open-btn').href = deepLinkUrl(c);
+
+        var copyBtn = document.getElementById('copy-btn');
+        copyBtn.addEventListener('click', function () {
+          var done = function () { copyBtn.textContent = 'Copied!'; setTimeout(function () { copyBtn.textContent = 'Copy code'; }, 1500); };
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(c).then(done, done);
+          } else {
+            // Fallback for older browsers without async clipboard API.
+            var ta = document.createElement('textarea');
+            ta.value = c; ta.style.position = 'fixed'; ta.style.opacity = '0';
+            document.body.appendChild(ta); ta.select();
+            try { document.execCommand('copy'); done(); } catch (_) {}
+            document.body.removeChild(ta);
+          }
+        });
+
+        show('view-fallback');
+      }
+    })();
+  </script>
+
+</body>
+</html>

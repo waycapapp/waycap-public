@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>WayCap — Capture the moment, together</title>
+  <meta name="description" content="A host creates a time-bounded happening and everyone captures photos and short videos into a shared pool." />
+  <meta name="theme-color" content="#FF5A5F" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23FF5A5F'/%3E%3Ccircle cx='32' cy='32' r='14' fill='%23fff'/%3E%3Ccircle cx='32' cy='32' r='7' fill='%23FF5A5F'/%3E%3C/svg%3E" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { primary: '#FF5A5F', 'primary-soft': '#FF8B8E', 'primary-dark': '#E63E48', ink: '#0B0B12' },
+          fontFamily: {
+            sans: ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+            mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white text-ink font-sans antialiased">
+
+  <header class="sticky top-0 z-10 bg-white/85 backdrop-blur border-b border-slate-100">
+    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="/" class="text-xl font-bold tracking-tight text-primary">WayCap</a>
+      <nav class="flex items-center gap-6 text-sm text-slate-600">
+        <a href="#features" class="hover:text-ink transition-colors">Features</a>
+        <a href="/tos" class="hover:text-ink transition-colors">Terms</a>
+        <a href="/privacy" class="hover:text-ink transition-colors">Privacy</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- Hero -->
+    <section class="px-6 pt-20 pb-16 md:pt-28 md:pb-20">
+      <div class="max-w-3xl mx-auto text-center">
+        <p class="inline-flex items-center gap-2 text-xs font-medium tracking-wider uppercase text-primary bg-primary/10 rounded-full px-3 py-1 mb-6">
+          <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+          Coming soon
+        </p>
+        <h1 class="text-4xl md:text-6xl font-bold tracking-tight leading-[1.05]">
+          Capture the moment.<br />
+          <span class="text-primary">Together.</span>
+        </h1>
+        <p class="mt-6 text-lg md:text-xl text-slate-600 leading-relaxed max-w-2xl mx-auto">
+          A host creates a time-bounded happening and everyone captures photos and short videos into a shared pool.
+        </p>
+        <p class="mt-3 text-sm text-slate-500">
+          Coming soon to iOS, Android, and the web.
+        </p>
+
+        <!-- Invite code entry — reuses the same deep-link logic as 404.html -->
+        <div class="mt-10 max-w-md mx-auto">
+          <label for="invite" class="block text-sm text-slate-500 mb-2">Got an invite? Paste your code</label>
+          <form id="invite-form" class="flex gap-2" autocomplete="off">
+            <input
+              id="invite"
+              name="invite"
+              type="text"
+              inputmode="text"
+              autocapitalize="characters"
+              placeholder="ABCDEFGH9"
+              maxlength="32"
+              class="flex-1 font-mono uppercase tracking-widest text-center text-base border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary"
+            />
+            <button
+              type="submit"
+              class="bg-primary hover:bg-primary-dark text-white font-semibold rounded-xl px-5 py-3 transition-colors"
+            >
+              Join
+            </button>
+          </form>
+          <p id="invite-msg" class="hidden mt-3 text-sm text-slate-500"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="px-6 py-16 md:py-24 bg-slate-50 border-y border-slate-100">
+      <div class="max-w-6xl mx-auto">
+        <div class="max-w-2xl mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold tracking-tight">One app for the whole crew.</h2>
+          <p class="mt-3 text-slate-600 text-lg">
+            No more chasing photos across group chats. Everyone captures into the same pool — automatically sorted, ready to recap.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <article class="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm">
+            <div class="w-10 h-10 rounded-lg bg-primary/10 text-primary grid place-items-center mb-4">
+              <span class="text-lg">⏱</span>
+            </div>
+            <h3 class="font-semibold text-lg mb-1">Happenings</h3>
+            <p class="text-slate-600 text-sm leading-relaxed">Time-bounded events anyone can start — a birthday, a hike, a hackathon.</p>
+          </article>
+
+          <article class="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm">
+            <div class="w-10 h-10 rounded-lg bg-primary/10 text-primary grid place-items-center mb-4">
+              <span class="text-lg">🔑</span>
+            </div>
+            <h3 class="font-semibold text-lg mb-1">9-character invites</h3>
+            <p class="text-slate-600 text-sm leading-relaxed">Short, shareable, typeable. No ambiguous characters — works in person and over text.</p>
+          </article>
+
+          <article class="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm">
+            <div class="w-10 h-10 rounded-lg bg-primary/10 text-primary grid place-items-center mb-4">
+              <span class="text-lg">📸</span>
+            </div>
+            <h3 class="font-semibold text-lg mb-1">Shared pool</h3>
+            <p class="text-slate-600 text-sm leading-relaxed">Every attendee's photos and clips land in one place — automatically ordered by capture time.</p>
+          </article>
+
+          <article class="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm">
+            <div class="w-10 h-10 rounded-lg bg-primary/10 text-primary grid place-items-center mb-4">
+              <span class="text-lg">🎥</span>
+            </div>
+            <h3 class="font-semibold text-lg mb-1">Capture tools</h3>
+            <p class="text-slate-600 text-sm leading-relaxed">Phone-first camera with quick lens switching, torch, flash, and one-handed zoom.</p>
+          </article>
+
+          <article class="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm">
+            <div class="w-10 h-10 rounded-lg bg-primary/10 text-primary grid place-items-center mb-4">
+              <span class="text-lg">✨</span>
+            </div>
+            <h3 class="font-semibold text-lg mb-1">AI recap <span class="text-xs text-slate-500 font-normal">(soon)</span></h3>
+            <p class="text-slate-600 text-sm leading-relaxed">One-tap highlight reel from the pool — auto-edited to the beat, with music.</p>
+          </article>
+
+          <article class="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm">
+            <div class="w-10 h-10 rounded-lg bg-primary/10 text-primary grid place-items-center mb-4">
+              <span class="text-lg">🌐</span>
+            </div>
+            <h3 class="font-semibold text-lg mb-1">Cross-platform</h3>
+            <p class="text-slate-600 text-sm leading-relaxed">iOS, Android, and web — one account, one pool, everyone included.</p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="px-6 py-10 border-t border-slate-100">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-slate-500">
+      <p>© 2026 WayCap</p>
+      <div class="flex items-center gap-5">
+        <a href="/tos" class="hover:text-ink transition-colors">Terms</a>
+        <a href="/privacy" class="hover:text-ink transition-colors">Privacy</a>
+        <a href="mailto:hello@waycap.app" class="hover:text-ink transition-colors">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Deep-link join logic, shared with 404.html (kept inline on purpose — 4-page site, not worth a shared script).
+    (function () {
+      var form = document.getElementById('invite-form');
+      var input = document.getElementById('invite');
+      var msg = document.getElementById('invite-msg');
+      if (!form || !input) return;
+
+      function sanitize(s) {
+        return (s || '').toUpperCase().replace(/[^A-Z0-9_-]/g, '').slice(0, 32);
+      }
+
+      function show(msgText) {
+        if (!msg) return;
+        msg.textContent = msgText;
+        msg.classList.remove('hidden');
+      }
+
+      function tryOpen(code) {
+        var url = 'waycap://join/' + code;
+        // Programmatic location change works on iOS Safari and most browsers.
+        window.location.href = url;
+        // Hidden anchor + click for gesture-safe Android Chrome fallback.
+        var a = document.createElement('a');
+        a.href = url;
+        a.style.display = 'none';
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(function () { document.body.removeChild(a); }, 100);
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var code = sanitize(input.value);
+        if (code.length < 4) {
+          show('That code looks too short — invite codes are at least 4 characters.');
+          input.focus();
+          return;
+        }
+        input.value = code;
+        tryOpen(code);
+        show('Opening WayCap… if nothing happens, make sure the app is installed.');
+      });
+    })();
+  </script>
+
+</body>
+</html>

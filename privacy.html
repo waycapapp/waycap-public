@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Privacy Policy — WayCap</title>
+  <meta name="description" content="How WayCap collects, uses, and protects your data." />
+  <meta name="theme-color" content="#FF5A5F" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23FF5A5F'/%3E%3Ccircle cx='32' cy='32' r='14' fill='%23fff'/%3E%3Ccircle cx='32' cy='32' r='7' fill='%23FF5A5F'/%3E%3C/svg%3E" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { primary: '#FF5A5F', 'primary-soft': '#FF8B8E', 'primary-dark': '#E63E48', ink: '#0B0B12' },
+          fontFamily: {
+            sans: ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+            mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white text-ink font-sans antialiased">
+
+  <header class="px-6 h-16 border-b border-slate-100 flex items-center">
+    <div class="max-w-3xl mx-auto w-full flex items-center justify-between">
+      <a href="/" class="text-lg font-bold tracking-tight text-primary">WayCap</a>
+      <a href="/" class="text-sm text-slate-500 hover:text-ink transition-colors">← Back to waycap.app</a>
+    </div>
+  </header>
+
+  <main class="max-w-3xl mx-auto px-6 py-16">
+
+    <h1 class="text-4xl font-bold tracking-tight">Privacy Policy</h1>
+    <p class="mt-2 text-sm text-slate-500">Last updated: September 14, 2026</p>
+
+    <nav class="mt-10 p-6 bg-slate-50 border border-slate-100 rounded-2xl text-sm">
+      <p class="font-semibold mb-3 text-slate-700">Contents</p>
+      <ul class="space-y-1.5 text-slate-600">
+        <li><a href="#section-1" class="hover:text-primary">1. What We Collect</a></li>
+        <li><a href="#section-2" class="hover:text-primary">2. How We Use It</a></li>
+        <li><a href="#section-3" class="hover:text-primary">3. Storage &amp; Retention</a></li>
+        <li><a href="#section-4" class="hover:text-primary">4. Sharing &amp; Third Parties</a></li>
+        <li><a href="#section-5" class="hover:text-primary">5. AI Processing</a></li>
+        <li><a href="#section-6" class="hover:text-primary">6. Your Rights</a></li>
+        <li><a href="#section-7" class="hover:text-primary">7. Children's Privacy</a></li>
+        <li><a href="#section-8" class="hover:text-primary">8. International Transfers</a></li>
+        <li><a href="#section-9" class="hover:text-primary">9. Security</a></li>
+        <li><a href="#section-10" class="hover:text-primary">10. Changes to this Policy</a></li>
+        <li><a href="#section-11" class="hover:text-primary">11. Contact</a></li>
+      </ul>
+    </nav>
+
+    <section id="section-1" class="mt-12 scroll-mt-20">
+      <h2 class="text-2xl font-semibold mb-3">1. What We Collect</h2>
+      <p class="text-slate-700 leading-relaxed">
+        We collect account information (your name, email, and avatar) through our authentication provider, Clerk. We collect the photos and videos you capture and upload into a happening, along with metadata about those captures (capture time, optional location if you enable it, device model). We collect the invite codes you create or use, and basic device metadata (app version, OS version, language) for diagnostics.
+      </p>
+      <p class="text-slate-700 leading-relaxed mt-3">
+        We do not collect contacts, browsing history, or advertising identifiers. We do not use third-party analytics that follow you across other apps.
+      </p>
+    </section>
+
+    <section id="section-2" class="mt-10 scroll-mt-20">
+      <h2 class="text-2xl font-semibold mb-3">2. How We Use It</h2>
+      <p class="text-slate-700 leading-relaxed">
+        We use the data we collect to operate the Service: authenticate you, store and display your captures within happenings, deliver notifications you have opted into (such as "your happening starts in 30 minutes"), and improve reliability and performance. We do not use your media to train third-party AI models and we do not sell your data.
+      </p>
+    </section>
+
+    <section id="section-3" class="mt-10 scroll-mt-20">
+      <h2 class="text-2xl font-semibold mb-3">3. Storage &amp; Retention</h2>
+      <p class="text-slate-700 leading-relaxed">
+        Captures are stored in S3-compatible object storage (currently RustFS) using presigned upload URLs that expire within minutes. Your account data is stored in our PostgreSQL database. Happenings are retained for as long as the host keeps them active, plus a grace period after the host ends the event so attendees can download captures. You can request earlier deletion by emailing us.
+      </p>
+    </section>
+
+    <section id="section-4" class="mt-10 scroll-mt-20">
+      <h2 class="text-2xl font-semibold mb-3">4. Sharing &amp; Third Parties</h2>
+      <p class="text-slate-700 leading-relaxed">
+        We share data with a small number of subprocessors required to run the Service: Clerk (authentication), an object-storage provider (media hosting), an email delivery provider (transactional email), and push-notification providers (Apple Push Notification service and Firebase Cloud Messaging). A current list of subprocessors is available on request.
+      </p>
+      <p class="text-slate-700 leading-relaxed mt-3">
+        Captures are visible to other members of the happening you joined. We do not share your data with advertising networks, data brokers, or social platforms.
+      </p>
+    </section>
+
+    <section id="section-5" class="mt-10 scroll-mt-20">
+      <h2 class="text-2xl font-semibold mb-3">5. AI Processing</h2>
+      <p class="text-slate-700 leading-relaxed">
+        The AI-edited recap feature processes captures from a happening to generate a short video. Processing happens on our infrastructure, scoped to the happening whose host initiated the recap. Generated outputs are visible only to members of that happening and to the host. We do not use your media to train any model shared with other accounts or customers.
+      </p>
+    </section>
+
+    <section id="section-6" class="mt-10 scroll-mt-20">
+      <h2 class="text-2xl font-semibold mb-3">6. Your Rights</h2>
+      <p class="text-slate-700 leading-relaxed">
+        You can access, correct, or delete your account data at any time from the app's profile settings. You can request export of your captures or removal of specific captures from a happening by contacting us at <a href="mailto:hello@waycap.app" class="text-primary hover:underline">hello@waycap.app</a>. Depending on your jurisdiction, you may also have the right to object to processing, request portability, or lodge a complaint with a data-protection authority.
+      </p>
+    </section>
+
+    <section id="section-7" class="mt-10 scroll-mt-20">
+      <h2 class="text-2xl font-semibold mb-3">7. Children's Privacy</h2>
+      <p class="text-slate-700 leading-relaxed">
+        WayCap is not directed at children under 13 (or the age of digital consent in your country). We do not knowingly collect personal information from children. If you believe a child has created an account, please contact us and we will delete the account and associated data.
+      </p>
+    </section>
+
+    <section id="section-8" class="mt-10 scroll-mt-20">
+      <h2 class="text-2xl font-semibold mb-3">8. International Transfers</h2>
+      <p class="text-slate-700 leading-relaxed">
+        WayCap's infrastructure may process your data in countries other than your country of residence. Where required, we rely on standard contractual clauses or equivalent safeguards to protect your data in transit and at rest.
+      </p>
+    </section>
+
+    <section id="section-9" class="mt-10 scroll-mt-20">
+      <h2 class="text-2xl font-semibold mb-3">9. Security</h2>
+      <p class="text-slate-700 leading-relaxed">
+        We use industry-standard safeguards: HTTPS in transit, server-side encryption at rest in object storage, signed and short-lived upload URLs, and rate-limiting on public endpoints. No system is perfectly secure — if you discover a vulnerability, please report it to <a href="mailto:security@waycap.app" class="text-primary hover:underline">security@waycap.app</a>.
+      </p>
+    </section>
+
+    <section id="section-10" class="mt-10 scroll-mt-20">
+      <h2 class="text-2xl font-semibold mb-3">10. Changes to this Policy</h2>
+      <p class="text-slate-700 leading-relaxed">
+        We may update this policy from time to time. If a change is material, we will notify you by email or in-app notice. The "Last updated" date at the top of this page will reflect the current version.
+      </p>
+    </section>
+
+    <section id="section-11" class="mt-10 scroll-mt-20">
+      <h2 class="text-2xl font-semibold mb-3">11. Contact</h2>
+      <p class="text-slate-700 leading-relaxed">
+        Questions about your privacy? Email <a href="mailto:hello@waycap.app" class="text-primary hover:underline">hello@waycap.app</a>.
+      </p>
+    </section>
+
+  </main>
+
+  <footer class="px-6 py-10 border-t border-slate-100">
+    <div class="max-w-3xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-slate-500">
+      <p>© 2026 WayCap</p>
+      <div class="flex items-center gap-5">
+        <a href="/tos" class="hover:text-ink transition-colors">Terms</a>
+        <a href="/privacy" class="text-ink font-semibold">Privacy</a>
+        <a href="mailto:hello@waycap.app" class="hover:text-ink transition-colors">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
