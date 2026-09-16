@@ -1,0 +1,16 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appIDs": ["5HSV895AQR.com.waycap.app"],
+        "components": [
+          {
+            "/": "/join/*",
+            "comment": "Match all WayCap invite URLs — the app extracts the invite code from the path"
+          }
+        ]
+      }
+    ]
+  }
+}
